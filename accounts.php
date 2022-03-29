@@ -24,7 +24,20 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])&&isset($_SESSION
     }else{
         $accountController->showAllAccout($_SESSION['permission']);
     }
+    if(isset($query['edit'])){
+        $accountController->changeAbout();
+    }
+    if(isset($query['delete'])){
+        $accountController->deleteUser($query['delete']);
+
+        $accountController->showAllAccout($_SESSION['permission']);
+    }
 }
 ?>
+<script>
+    jQuery(document).ready(function($) {
+        window.history.pushState({}, document.title, "/accounts.php" );
+    });
+</script>
 </body>
 </html>
